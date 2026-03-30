@@ -4,8 +4,8 @@ from .models import Person
 
 # Create your views here.
 def myfunc(request):
-
-    return HttpResponse("yo")
+    context={"user_name":"AANAL"}
+    return render(request,"app1/abc.html",context)
 
 def myfunc2(req,**kwargs):
     status=kwargs.get('status','not allowed')
@@ -20,4 +20,12 @@ def data_insert(request):
         address='abc appartments'
     )
     return HttpResponse("person details added")
+
+def home(request):
+    return render(request,"app1/base.html")
+def page1(request):
+    return render(request,"app1/page1.html")
+def page2(request):
+    return render(request,"app1/page2.html")
+
 
