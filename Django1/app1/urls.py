@@ -10,8 +10,8 @@ urlpatterns = [
     path("data/",views.data_insert,name="data_insert"),
     path("color/",views.data_insert,name="data_insert"),
     path("temp/",views.myfunc,name="myfunc"),
+    path("home/page1/",views.page1,name="page1"),
+    path("home/page2/",views.page2,name="page2"),
     path("home/",views.home,name="home"),
-    path("page1/",views.page1,name="page1"),
-    path("page2/",views.page2,name="page2"),
 
 ]
