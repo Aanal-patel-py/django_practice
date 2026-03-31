@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from app1 import views
+from app3 import views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('app1.urls')),
+    path('app3/',include('app3.urls')),
 
 ]
