@@ -5,5 +5,11 @@ class Registration(forms.Form):
     last_name=forms.CharField()
     email=forms.EmailField()
     password=forms.CharField()
+    gender_choices=[
+        ('male','Male'),
+        ('female','Female'),
+    ]
+    gender=forms.ChoiceField(choices=gender_choices,label="select gender")
+
 
 
