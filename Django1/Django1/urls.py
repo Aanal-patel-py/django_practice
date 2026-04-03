@@ -19,10 +19,15 @@ from django.urls import path,include
 from app1 import views
 from app3 import views
 
+import debug_toolbar
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('app1.urls')),
     path('app3/',include('app3.urls')),
+    path('app4/',include('app4.urls')),
+
+    path('__debug__/', include(debug_toolbar.urls)),
 
 ]
