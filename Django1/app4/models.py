@@ -15,6 +15,9 @@ class Book(models.Model):
     published_date = models.DateField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
 
+    class Meta:
+        unique_together=('title','author')
+
     def __str__(self):
         return self.title
 
