@@ -20,7 +20,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Django1.settings')
 '''application is the entry point for ASGI servers (like Daphne or Uvicorn).
 It tells the server:
 If this is HTTP → handle with Django’s normal ASGI app
-If this is WebSocket → handle with the stack below'''
+If this is WebSocket → handle with the stack below'''   
 
 application = ProtocolTypeRouter({
     'http':get_asgi_application(), #Handles all normal HTTP requests

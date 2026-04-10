@@ -7,5 +7,41 @@ class EchoConsumer(AsyncWebsocketConsumer):
         await self.send(text_data="Hello from server!")
 
     async def receive(self, text_data): #called every time the client sends a message.
-        # Echo the received message back
         await self.send(text_data=text_data) #sends the same message back to the client.
+
+class Notify(AsyncWebsocketConsumer):
+
+    async def connect(self):
+        self.group_name='users_123'
+        
+        await self.channel_layer.group_add(
+            self.group_name,
+            self.channel_name
+
+        )
+        print(f"channel name: {self.channel_name}")
+        await self.accept()
+
+    async def disconnect(self,close_code):
+        await self.channel_layer.group_discard(
+            self.group_name,
+            self.channel_name
+        )
+    async def receive(self, text_data):
+        data=json.loads(text_data)
+        
+        await self.channel_layer.group_send(
+            self.group_name,
+            {
+                "type": "notify.msg" ,
+                "message":data.get("message")
+            }
+        )
+
+    async def notify_msg(self,event):
+        await self.send(
+            text_data=json.dumps({
+                "message": event["message"]
+            }
+            )
+        )

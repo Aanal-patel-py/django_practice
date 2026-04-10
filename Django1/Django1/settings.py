@@ -140,3 +140,8 @@ INTERNAL_IPS = [
     "0.0.0.0",
 ]
 
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+    }
+}

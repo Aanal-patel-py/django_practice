@@ -6,21 +6,32 @@
     <title>Document</title>
 </head>
 <body>
+  <input id="msg"/>
+  <button onclick="sendMsg()">Send</button>
+
+
     <script>
-  // 1. Open a WebSocket connection to the server
+  // opening websocket connection
   const ws = new WebSocket("ws://" + window.location.host + "/ws/chat/");
 
-  // 2. Listen for messages from the server
+  // listen for messages from the server
   ws.onmessage = (event) => {
     console.log("Received:", event.data);
   }
 
-  // 3. Send a message to the server
+  //send a message to the server
   ws.onopen = () => {
-    ws.send("Hello from browser!");
+    ws.send(JSON.stringify({
+      message: "Hello everyone",
+    }));
   }
 
-  // 4. Optional: handle disconnect
+  function sendMsg() {
+    const text = document.getElementById("msg").value;
+    ws.send(JSON.stringify({ message: text }));
+  }
+
+  //handling disconnect
   ws.onclose = () => {
     console.log("Disconnected");
   }
